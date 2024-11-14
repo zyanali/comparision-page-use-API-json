@@ -1,0 +1,62 @@
+{
+    "Bonanza": [
+      {
+        "id": "1",
+        "name": "XTREME MAN",
+        "price": 4400.00,
+        "description": "A refreshing fragrance.",
+        "image": "images/b1.webp"
+      },
+      {
+        "id": "2",
+        "name": "ECLIPSE",
+        "price": 3900.00,
+        "description": "A bold and unique fragrance.",
+        "image": "images/b2.webp"
+      },
+      {
+        "id": "3",
+        "name": "BLACK ONYX",
+        "price": 4400.00,
+        "description": "A refreshing fragrance.",
+        "image": "images/b3.webp"
+      },
+      {
+        "id": "4",
+        "name": "NOTORIOUS INTENSE",
+        "price": 3900.00,
+        "description": "A bold and unique fragrance.",
+        "image": "images/b4.webp"
+      }
+    ],
+    "J": [
+      {
+        "id": "5",
+        "name": "KHUMAR",
+        "price": 3100.00,
+        "description": "A classic scent.",
+        "image": "images/j1.webp"
+      },
+      {
+        "id": "6",
+        "name": "ZARAR GOLD",
+        "price": 4300.00,
+        "description": "A fragrance to remember.",
+        "image": "images/j2.webp"
+      },
+      {
+        "id": "7",
+        "name": "ZARAR BLUE",
+        "price": 3100.00,
+        "description": "A classic scent.",
+        "image": "images/j3.webp"
+      },
+      {
+        "id": "8",
+        "name": "SMOKY VANILLIn",
+        "price": 4300.00,
+        "description": "A fragrance to remember.",
+        "image": "images/j4.webp"
+      }
+    ]
+  }

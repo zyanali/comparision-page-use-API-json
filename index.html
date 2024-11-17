@@ -33,10 +33,10 @@
         </select>
         <h2>J.</h2>
         <select id="brand2" onchange="displayProduct('J', this.value)">
-            <option value="0">select</option>
-            <option value="1">KHUMAR</option>
-            <option value="2">ZARAR GOLD</option>
-            <option value="3">ZARAR BLUE</option>
+            <option value="4">select</option>
+            <option value="5">KHUMAR</option>
+            <option value="6">ZARAR GOLD</option>
+            <option value="7">ZARAR BLUE</option>
 
         </select>
         <div id="product-card-container" class="card-container "></div>
@@ -44,23 +44,24 @@
     <script src="jquery/jquery-3.7.1.js"></script>
     <script src="bootstrap-4.6.2-dist/js/bootstrap.js.map"></script>
     <script>
-        let productCardContainer = $('#product-card-container'); // ya productcontainer ko terget krta ha
-        let productsData = {};  //product ko store krta ha  jo json sa fetch hota ha
+            let productCardContainer = $('#product-card-container'); // ya productcontainer ko terget krta ha
+        let productData = {};  //product ko store krta ha  jo json sa fetch hota ha
         $.ajax({
             url: "products.json",
             dataType: "json",
             success: function (data) {
-                productsData = data;
+                productData = data;
                 // console.log( productsData);
             }
         });
 
         //  display product section based 
+        
         function displayProduct(brand, productId) {   // terget brand ,id jis pa clicke hoa ha oska brand konsa ha aur id kya ha
             productCardContainer.empty();  // Clear previous card
 
             //  selected brand show on card
-            let brandProducts = productsData[brand];
+            let brandProducts = productData[brand];
             if (brandProducts) {
                 let product = brandProducts.find(prod => prod.id === productId);
                 if (product) {
@@ -78,7 +79,38 @@
                 }
             }
         }
+       
+        // let productCardContainer = $('#product-card-container');
+        // $.ajax({
+        //     url: "products.json",
+        //     dataType: "json",
+        //     success: function (productData) {
+        //         console.log("Product Data Loaded:", productData);
+        //         function displayProduct(brand, productId) {
+        //             productCardContainer.empty();
+        //             let brandProducts = productData[brand];
+        //             if (brandProducts) {
+        //                 let product = brandProducts.find(prod => prod.id === productId);
+        //                 if (product) {
+        //                     let productCard = `
+        //                         <div class="card" style="width: 18rem; margin: 10px;">
+        //                             <img class="card-img-top" src="${product.image}" alt="">
+        //                             <div class="card-body">
+        //                                 <h5 class="card-title">${product.name}</h5>
+        //                                 <p class="card-text">${product.description}</p>
+        //                                 <p class="card-text"><strong>Price:</strong> $${product.price}</p>
+        //                             </div>
+        //                         </div>
+        //                     `;
+        //                     productCardContainer.append(productCard);
+        //                 }
+        //             }
+        //         }
+        //         window.displayProduct = displayProduct;
+        //     }
+        // });
     </script>
+    
 </body>
 
 </html>

@@ -8,109 +8,91 @@
     <title>Document</title>
     <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css">
 </head>
-<style>
-    select {
-        height: 38px;
-        padding: 5px;
-        box-sizing: border-box;
-        margin: 5px;
-    }
-
-    .card-container {
-        margin-top: 50px;
-
-    }
-</style>
 
 <body>
-    <div class="container" style="display: flex;flex-direction: row;">
-        <h2>Bonanza</h2><br>
-        <select name="" id="brand1" onchange="displayProduct('Bonanza', this.value)">
-            <option value="0">select</option>
-            <option value="1">XTREME MAN</option>
-            <option value="2">ECLIPSE</option>
-            <option value="3">BLACK ONYX</option>
-        </select>
-        <h2>J.</h2>
-        <select id="brand2" onchange="displayProduct('J', this.value)">
-            <option value="4">select</option>
-            <option value="5">KHUMAR</option>
-            <option value="6">ZARAR GOLD</option>
-            <option value="7">ZARAR BLUE</option>
-
-        </select>
-        <div id="product-card-container" class="card-container "></div>
+    <div class="container mt-3 p-5" style="box-shadow: 2px 4px 8px red;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">Bonanza</label>
+                    <select class="form-control" name="" id="bonanza">
+                        <option>select</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="">J.</label>
+                    <select class="form-control" name="" id="J">
+                        <option>select</option>
+                    </select>
+                </div>
+            </div>
+           <div class="col-md-6" style="margin-left: 20%;">
+            <div class="card" >
+                <img class="card-img-top" src="" alt="" id="image" >
+                <div class="card-body">
+                    <h4 class="card-title" id="name">Title</h4>
+                    <p class="card-text" id="price">Text</p>
+                </div>
+            </div>
+           </div>
+        </div>
     </div>
     <script src="jquery/jquery-3.7.1.js"></script>
     <script src="bootstrap-4.6.2-dist/js/bootstrap.js.map"></script>
     <script>
-            let productCardContainer = $('#product-card-container'); // ya productcontainer ko terget krta ha
-        let productData = {};  //product ko store krta ha  jo json sa fetch hota ha
         $.ajax({
             url: "products.json",
-            dataType: "json",
+            type: "get",
             success: function (data) {
-                productData = data;
-                // console.log( productsData);
+                console.log(data);
+                data.Bonanza.forEach(element => {
+                    $("#bonanza").append(
+                        ` <option value="` + element.id + `">` + element.name + `</option>`
+                    )
+                });
+                data.J.forEach(element => {
+                    $("#J").append(
+                        ` <option value="` + element.id + `">` + element.name + `</option>`
+                    )
+                });
+                //for each mehtod end
+                $("#bonanza").change(function(){
+                    let jId =$(this).val();
+                    console.log(jId);
+                    let jRecord = data.Bonanza.find(jRec=>jRec.id ==jId);
+                    if(jRecord){
+                        $("#image").attr("src",jRecord.image);
+                        $("#name").text(jRecord.name);
+                        $("#price").text(jRecord.price);
+                    }
+                    else{
+                        $("#image").attr("src","no");
+                        $("#name").text("no name");
+                        $("#price").text("no price");
+                    }
+                });
+                    //for each mehtod end
+                    $("#J").change(function(){
+                    let jId =$(this).val();
+                    console.log(jId);
+                    let jRecord = data.J.find(jRec=>jRec.id ==jId);
+                    if(jRecord){
+                        $("#image").attr("src",jRecord.image);
+                        $("#name").text(jRecord.name);
+                        $("#price").text(jRecord.price);
+                    }
+                    else{
+                        $("#image").attr("src","no");
+                        $("#name").text("no name");
+                        $("#price").text("no price");
+                    }
+                })
             }
-        });
-
-        //  display product section based 
-        
-        function displayProduct(brand, productId) {   // terget brand ,id jis pa clicke hoa ha oska brand konsa ha aur id kya ha
-            productCardContainer.empty();  // Clear previous card
-
-            //  selected brand show on card
-            let brandProducts = productData[brand];
-            if (brandProducts) {
-                let product = brandProducts.find(prod => prod.id === productId);
-                if (product) {
-                    let productCard = `
-                        <div class="card" style="width: 18rem; margin: 10px;">
-                            <img  class="card-img-top" src="${product.image}" alt="">
-                            <div class="card-body">
-                                <h5 class="card-title">${product.name}</h5>
-                                <p class="card-text">${product.description}</p>
-                                <p class="card-text"><strong>Price:</strong> $${product.price}</p>
-                            </div>
-                        </div>
-                    `;
-                    productCardContainer.append(productCard);
-                }
-            }
-        }
-       
-        // let productCardContainer = $('#product-card-container');
-        // $.ajax({
-        //     url: "products.json",
-        //     dataType: "json",
-        //     success: function (productData) {
-        //         console.log("Product Data Loaded:", productData);
-        //         function displayProduct(brand, productId) {
-        //             productCardContainer.empty();
-        //             let brandProducts = productData[brand];
-        //             if (brandProducts) {
-        //                 let product = brandProducts.find(prod => prod.id === productId);
-        //                 if (product) {
-        //                     let productCard = `
-        //                         <div class="card" style="width: 18rem; margin: 10px;">
-        //                             <img class="card-img-top" src="${product.image}" alt="">
-        //                             <div class="card-body">
-        //                                 <h5 class="card-title">${product.name}</h5>
-        //                                 <p class="card-text">${product.description}</p>
-        //                                 <p class="card-text"><strong>Price:</strong> $${product.price}</p>
-        //                             </div>
-        //                         </div>
-        //                     `;
-        //                     productCardContainer.append(productCard);
-        //                 }
-        //             }
-        //         }
-        //         window.displayProduct = displayProduct;
-        //     }
-        // });
+        })
     </script>
-    
+
 </body>
 
 </html>

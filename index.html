@@ -9,10 +9,14 @@
     <link rel="stylesheet" href="bootstrap-4.6.2-dist/css/bootstrap.min.css">
 </head>
 
+ .card img{
+        height: 390px;
+    }
+</style>
 <body>
-    <div class="container mt-3 p-5" style="box-shadow: 2px 4px 8px red;">
+    <div class="container mt-3 p-5" style="box-shadow: 2px 4px 8pred;height: 800px;">
         <div class="row">
-            <div class="col-md-6">
+            <div clss="col-md-6">
                 <div class="form-group">
                     <label for="">Bonanza</label>
                     <select class="form-control" name="" id="bonanza">
@@ -28,12 +32,21 @@
                     </select>
                 </div>
             </div>
-           <div class="col-md-6" style="margin-left: 20%;">
+           <div class="col-md-4" style="margin-left: auto;">
             <div class="card" >
-                <img class="card-img-top" src="" alt="" id="image" >
+               <img class="card-img-top" src="images/b4.webp" alt="" id="image" >  <!--ya image icon ki pic aygii -->
                 <div class="card-body">
-                    <h4 class="card-title" id="name">Title</h4>
-                    <p class="card-text" id="price">Text</p>
+                    <h4 class="card-title" id="name">No Nmae</h4> <!--jab product select nhi hoa hoga -->
+                    <p class="card-text" id="price">No Price</p><!--jab product select nhi hoa hoga -->
+                </div>
+            </div>
+           </div>
+           <div class="col-md-4 " style="margin-left: auto;" >
+            <div class="card" >
+                <img class="card-img-top" src="images/b4.webp" alt="" id="pimage" ><!--ya image icon ki pic aygii -->
+                <div class="card-body">
+                    <h4 class="card-title" id="pname">No Name</h4><!--jab product select nhi hoa hoga -->
+                    <p class="card-text" id="pprice">No Price</p><!--jab product select nhi hoa hoga -->
                 </div>
             </div>
            </div>
@@ -68,7 +81,7 @@
                         $("#price").text(jRecord.price);
                     }
                     else{
-                        $("#image").attr("src","no");
+                        $("#image").attr("src","images/b4.webp");
                         $("#name").text("no name");
                         $("#price").text("no price");
                     }
@@ -79,14 +92,14 @@
                     console.log(jId);
                     let jRecord = data.J.find(jRec=>jRec.id ==jId);
                     if(jRecord){
-                        $("#image").attr("src",jRecord.image);
-                        $("#name").text(jRecord.name);
-                        $("#price").text(jRecord.price);
+                        $("#pimage").attr("src",jRecord.image);
+                        $("#pname").text(jRecord.name);
+                        $("#pprice").text(jRecord.price);
                     }
                     else{
-                        $("#image").attr("src","no");
-                        $("#name").text("no name");
-                        $("#price").text("no price");
+                        $("#pimage").attr("src","images/b4.webp");
+                        $("#pname").text("no name");
+                        $("#pprice").text("no price");
                     }
                 })
             }
